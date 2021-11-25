@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "c49b23a2-43cf-4a58-8213-be1227f1189d",
+		"name": "leanote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User用户",
+			"item": [
+				{
+					"name": "登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "taozhang.tt@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "pwd",
+									"value": "pwdpwd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{leanote}}/api/auth/login",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取最新同步状态",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/user/getSyncState?userId=617622926b4cc61676000014&token=617772806b4cc622d5000006",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getSyncState"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "617622926b4cc61676000014"
+								},
+								{
+									"key": "token",
+									"value": "617772806b4cc622d5000006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/user/info?userId=5368c1aa99c37b029d000001&token=617a670af7676100fe000003",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"info"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5368c1aa99c37b029d000001"
+								},
+								{
+									"key": "token",
+									"value": "617a670af7676100fe000003"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "笔记本Notebook",
+			"item": [
+				{
+					"name": "获取所有笔记本",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/notebook/getNotebooks?token=619ddb2a6b4cc635550000",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"notebook",
+								"getNotebooks"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "619ddb2a6b4cc635550000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除笔记本",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/notebook/deleteNotebook?token=617799ebf76761037a0000&notebookId=6180b4eef76761015a00000&usn=200090",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"notebook",
+								"deleteNotebook"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617799ebf76761037a0000"
+								},
+								{
+									"key": "notebookId",
+									"value": "6180b4eef76761015a00000"
+								},
+								{
+									"key": "usn",
+									"value": "200090"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api-获取需要同步的笔记本",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/notebook/getSyncNotebooks?token=617772806b4cc622d5000006&afterUsn=-1&format=json&maxEntry=200",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"notebook",
+								"getSyncNotebooks"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617772806b4cc622d5000006"
+								},
+								{
+									"key": "afterUsn",
+									"value": "-1"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "maxEntry",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加笔记本",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/notebook/addNotebook?token=617799ebf76761037a000006&title=笔记本1-2&seq=0",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"notebook",
+								"addNotebook"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617799ebf76761037a000006"
+								},
+								{
+									"key": "title",
+									"value": "笔记本1-2"
+								},
+								{
+									"key": "parentNotebookId",
+									"value": "61779a10f76761037a000008",
+									"description": "父notebookId, 可空",
+									"disabled": true
+								},
+								{
+									"key": "seq",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "笔记",
+			"item": [
+				{
+					"name": "获得笔记本下的笔记",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/getNotes?token=619ddb2a6b4cc63555000011&notebookId=619ddb496b4cc63555000014",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"getNotes"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "619ddb2a6b4cc63555000011"
+								},
+								{
+									"key": "notebookId",
+									"value": "619ddb496b4cc63555000014"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取需要同步的笔记",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/getSyncNotes?token=617799ebf76761037a000006&afterUsn=-1&format=json&maxEntry=200",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"getSyncNotes"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617799ebf76761037a000006"
+								},
+								{
+									"key": "afterUsn",
+									"value": "-1"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "maxEntry",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获得笔记内容",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/getNoteContent?token=617799ebf76761037a000006&format=json&noteId=61810859f767610058000006",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"getNoteContent"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617799ebf76761037a000006"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "noteId",
+									"value": "61810859f767610058000006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获得笔记与内容",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/getNoteAndContent?token=617799ebf76761037a000006&format=json&noteId=61810859f767610058000006",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"getNoteAndContent"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617799ebf76761037a000006"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								},
+								{
+									"key": "noteId",
+									"value": "61810859f767610058000006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加笔记",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "617a670af7676100fe000003",
+									"type": "text"
+								},
+								{
+									"key": "NotebookId",
+									"value": "61779b2af76761037a000009",
+									"type": "text"
+								},
+								{
+									"key": "Title",
+									"value": "测试笔记md",
+									"type": "text"
+								},
+								{
+									"key": "Content",
+									"value": "这是测试笔记的内容",
+									"type": "text"
+								},
+								{
+									"key": "Abstract",
+									"value": "这是测试笔记的摘要",
+									"type": "text"
+								},
+								{
+									"key": "IsMarkdown",
+									"value": "true",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{leanote}}/api/note/addNote",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"addNote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新笔记",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/updateNote?token=617a670af7676100fe000003&NoteId=617a68b0f7676100fe000009&Title=测试笔记md&Content=这是测试笔记的内容这是测试笔记的内容这是测试笔记的内容这是测试笔记的内容&Abstract=这是测试笔记的摘要&IsMarkdown=true&usn=200076",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"updateNote"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "617a670af7676100fe000003"
+								},
+								{
+									"key": "NoteId",
+									"value": "617a68b0f7676100fe000009"
+								},
+								{
+									"key": "Title",
+									"value": "测试笔记md"
+								},
+								{
+									"key": "Content",
+									"value": "这是测试笔记的内容这是测试笔记的内容这是测试笔记的内容这是测试笔记的内容"
+								},
+								{
+									"key": "Abstract",
+									"value": "这是测试笔记的摘要"
+								},
+								{
+									"key": "IsMarkdown",
+									"value": "true"
+								},
+								{
+									"key": "usn",
+									"value": "200076",
+									"description": "需要和原笔记保持一致"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "彻底删除笔记",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{leanote}}/api/note/deletetrash?token=619ddb2a6b4cc63555000011&noteId=619e202fbfb749110c000000&usn=196",
+							"host": [
+								"{{leanote}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"deletetrash"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "619ddb2a6b4cc63555000011"
+								},
+								{
+									"key": "noteId",
+									"value": "619e202fbfb749110c000000"
+								},
+								{
+									"key": "usn",
+									"value": "196"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -26,6 +26,7 @@ type AddNoteResp struct {
 	PublicTime  string `json:"PublicTime"`
 }
 
+// 新增笔记
 func AddNote(address, token, notebookId, title, content, abstract string) (*AddNoteResp, error) {
 	var (
 		ret  = new(AddNoteResp)
