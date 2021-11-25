@@ -2,9 +2,7 @@ package config
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"leanote-sync/api"
 )
 
 type Config struct {
@@ -27,14 +25,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	loginResp, err := api.Login(cnf.Address, cnf.Email, cnf.Passwd)
-	if err != nil {
-		panic(fmt.Sprintf("api.Login(%v, %v, %v) failed: %v\n", cnf.Address, cnf.Email, cnf.Passwd, err))
-	}
-	if !loginResp.Ok {
-		panic(fmt.Sprintf("api.Login(%v, %v, %v) failed: %v\n", cnf.Address, cnf.Email, cnf.Passwd, loginResp.Msg))
-	}
-	cnf.Token = loginResp.Token
 }
 
 func GetConfig() *Config {

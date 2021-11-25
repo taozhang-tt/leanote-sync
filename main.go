@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"io/fs"
 	"io/ioutil"
-	"leanote-sync/api"
-	. "leanote-sync/config"
 	"os"
 	"strings"
 	"time"
+
+	"leanote-sync/api"
+	. "leanote-sync/config"
 )
 
 // 这些账本总能获取到，即使已经被删除了
@@ -24,6 +25,18 @@ var config = GetConfig()
 func main() {
 	now := time.Now().Unix()
 
+	// 登录操作
+	loginResp, err := api.Login(config.Address, config.Email, config.Passwd)
+	if err != nil {
+		fmt.Printf("api.Login(%v, %v, %v) failed: %v\n", config.Address, config.Email, config.Passwd, err)
+		return
+	}
+	if !loginResp.Ok {
+		fmt.Printf("api.Login(%v, %v, %v) failed: %v\n", config.Address, config.Email, config.Passwd, loginResp.Msg)
+		return
+	}
+	config.Token = loginResp.Token
+
 	// 读取笔记目录，构造本地目录树
 	list, err := ioutil.ReadDir(config.RootDir)
 	if err != nil {
@@ -32,7 +45,7 @@ func main() {
 	}
 	localTree := LocalDirNode{
 		Name:  "Note",
-		Dir:   "/Users/tt/Documents/Note",
+		Dir:   config.RootDir,
 		Dirs:  make([]*LocalDirNode, 0),
 		Files: make([]*LocalFileNode, 0),
 	}
