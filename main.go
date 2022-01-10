@@ -90,10 +90,10 @@ func Sync(local *LocalDirNode, remote *RemoteDirNode) error {
 	// step1: 同步文件
 	for _, file := range local.Files {
 		arr := strings.Split(file.Name, ".")
-		if len(arr) != 2 || arr[1] != "md" {
+		if len(arr) < 2 || arr[len(arr)-1] != "md" {
 			continue
 		}
-		title := arr[0]
+		title := strings.Join(arr[:len(arr)-1], ".")
 		filePath := local.Dir + "/" + file.Name
 		bs, err := ioutil.ReadFile(filePath)
 		if err != nil {
@@ -105,7 +105,7 @@ func Sync(local *LocalDirNode, remote *RemoteDirNode) error {
 			if file.Updated < config.Updated {
 				continue
 			}
-			if _, err = api.UpdateNote(config.Address, config.Token, note.NotebookID, title, string(bs), "", note.Usn); err != nil {
+			if _, err = api.UpdateNote(config.Address, config.Token, note.NoteID, title, string(bs), "", note.Usn); err != nil {
 				return err
 			}
 			fmt.Printf("UpdateNote: %v\n", filePath)
