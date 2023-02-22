@@ -3,5 +3,8 @@
     "email": "用户邮箱",
     "passwd": "用户密码",
     "dir": "本地笔记根目录",
-    "updated": 0
+    "updated": 0,
+    "ignore_dirs": [
+        ".git"
+    ]
 }

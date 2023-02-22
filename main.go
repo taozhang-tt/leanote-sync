@@ -67,7 +67,7 @@ func main() {
 	Sync(&localTree, remoteTree)
 
 	// 同步结束后更新一下config文件，记录本次更新时间
-	fd, err := os.OpenFile("/etc/leanote-sync.json", os.O_WRONLY|os.O_CREATE, 0666)
+	fd, err := os.OpenFile("/etc/leanote-sync.json", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		fmt.Printf("os.OpenFile(%v) failed: %v\n", "/etc/leanote-sync.json", err)
 		return
@@ -193,6 +193,9 @@ func BuildLocalTree(root *LocalDirNode, list []fs.FileInfo) error {
 	for _, item := range list {
 		name := item.Name()
 		if item.IsDir() {
+			if config.IgnoreMap[name] {
+				continue
+			}
 			node := LocalDirNode{
 				Name:  name,
 				Dir:   root.Dir + "/" + name,
